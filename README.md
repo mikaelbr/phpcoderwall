@@ -11,7 +11,7 @@ For easier installation you should also have [composer](http://getcomposer.org/)
 ## Documentation and Examples 
 
 ### Fetching user information
-```
+```php
 <?php
 require 'vendor/autoload.php';
 
@@ -103,7 +103,7 @@ about a users team through the API but only by explicitly searching for a team b
 
 
 ### Fetching team information
-```
+```php
 <?php
 require 'vendor/autoload.php';
 
