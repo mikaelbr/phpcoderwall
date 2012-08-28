@@ -22,15 +22,19 @@ class WebRequestor {
 
         if (function_exists('curl_init'))
         {
-            return self::getCurlWrapper($url, $headers)
+            return self::getCurlWrapper($url, $headers);
         }
         
         return @file_get_contents($url, false, $headers);
     }
 
-    private static getCurlWrapper ($url, $headers)
+    private static function getCurlWrapper ($url, $headers)
     {
-
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $contents = curl_exec($ch);
+        curl_close($ch);
+        return $contents;
     }
 
 }

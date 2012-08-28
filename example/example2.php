@@ -2,9 +2,9 @@
 require '../vendor/autoload.php';
 
 $coderwall = PhpCoderwall\PhpCoderwall::getInstance();
-$user = $coderwall->getUser("mikaelbr");
+$team = $coderwall->getTeam("Github");
 ?>
 
 <pre>
-    <?php print_r($user) ?>
+    <?php print_r($team) ?>
 </pre>

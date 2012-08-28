@@ -38,15 +38,26 @@ class PhpCoderwall {
     }
 
 
-    public function get($username)
+    public function getUser($username)
     {
         if (empty($username) || !isset($username))
         {
-            throw new \Exception("Illegal argument passed. Username is not set.")
+            throw new \Exception("Illegal argument passed. Username is not set.");
         }
 
-        $contents = json_decode(Utils\WebRequestor::get(self::SERVICE_BASE_URL . $username . ".json"));
+        $contents = json_decode(Utils\WebRequestor::request(self::SERVICE_BASE_URL . $username . ".json"));
 
-        
+        return Entity\CoderwallUser::fromJSON($contents);
+    }
+
+    public function getTeam($team)
+    {
+        if (empty($team) || !isset($team))
+        {
+            throw new \Exception("Illegal argument passed. Team name is not set.");
+        }
+
+        $contents = json_decode(Utils\WebRequestor::request(self::SERVICE_BASE_URL . "team/" . $team . ".json"));
+        return Entity\CoderwallTeam::fromJSON($contents);
     }
 }
