@@ -1,5 +1,6 @@
 {
     "name": "mikaelbr/phpCoderwall",
+    "version": "0.0.1",
     "type" : "library",
     "description" : "PHP library for fetching Coderwall data",
     "keywords" : ["coderwall", "coderwall api"],
