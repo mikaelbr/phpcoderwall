@@ -1,10 +1,10 @@
 {
-    "name": "mikaelbr/phpCoderwall",
+    "name": "mikaelbr/phpcoderwall",
     "version": "0.0.1",
     "type" : "library",
     "description" : "PHP library for fetching Coderwall data",
     "keywords" : ["coderwall", "coderwall api"],
-    "homepage" : "http://github.com/mikaelbr/phpCoderwall",
+    "homepage" : "http://github.com/mikaelbr/phpcoderwall",
     "license"  : "MIT",
     "authors"  : [
         {
