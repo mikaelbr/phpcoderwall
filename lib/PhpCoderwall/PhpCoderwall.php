@@ -38,14 +38,26 @@ class PhpCoderwall {
     }
 
 
-    public function getUser($username)
+    public function getUser($username, $fullInfo = false)
     {
         if (empty($username) || !isset($username))
         {
             throw new \Exception("Illegal argument passed. Username is not set.");
         }
 
-        $contents = json_decode(Utils\WebRequestor::request(self::SERVICE_BASE_URL . $username . ".json"));
+        $url = self::SERVICE_BASE_URL . $username . ".json";
+
+        if ($fullInfo) 
+        {
+            $url .= "?full=true";
+        }
+
+        $contents = json_decode(Utils\WebRequestor::request($url));
+
+        if ($fullInfo && !empty($contents->team)) 
+        {
+            $contents->team = $this->getTeamById($contents->team);
+        }
 
         return Entity\CoderwallUser::fromJSON($contents);
     }
@@ -58,6 +70,17 @@ class PhpCoderwall {
         }
 
         $contents = json_decode(Utils\WebRequestor::request(self::SERVICE_BASE_URL . "team/" . $team . ".json"));
+        return Entity\CoderwallTeam::fromJSON($contents);
+    }
+
+    public function getTeamById($teamId)
+    {
+        if (empty($teamId) || !isset($teamId))
+        {
+            throw new \Exception("Illegal argument passed. Team ID is not set.");
+        }
+
+        $contents = json_decode(Utils\WebRequestor::request(self::SERVICE_BASE_URL . "teams/" . $teamId . ".json"));
         return Entity\CoderwallTeam::fromJSON($contents);
     }
 }

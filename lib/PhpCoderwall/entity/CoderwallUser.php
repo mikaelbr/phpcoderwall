@@ -9,9 +9,18 @@ class CoderwallUser extends CoderwallEntity {
     public $location;
     public $endorsements;
     public $team;
+    public $badgesCount;
+
     public $accounts = array();
     public $badges = array();
-    public $badgesCount;
+
+    // Full information
+    public $title;
+    public $company;
+    public $thumbnail;
+
+    public $specialities = array();
+    public $accomplishments = array();
 
     public function __construct($username) 
     {
@@ -38,6 +47,16 @@ class CoderwallUser extends CoderwallEntity {
 
         $user->badgesCount = count($user->badges);
 
+
+        // Check for full version..
+        if (isset($obj->title))
+        {
+            $user->title = $obj->title;
+            $user->company = $obj->company;
+            $user->thumbnail = $obj->thumbnail;
+            $user->specialities = $obj->specialities;
+            $user->accomplishments = $obj->accomplishments;
+        }
         
         return $user;
     }

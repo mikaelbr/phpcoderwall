@@ -2,7 +2,7 @@
 require '../vendor/autoload.php';
 
 $coderwall = PhpCoderwall\PhpCoderwall::getInstance();
-$user = $coderwall->getUser("mikaelbr");
+$user = $coderwall->getUser("mikaelbr", true);
 ?>
 
 <pre>

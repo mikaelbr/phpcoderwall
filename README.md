@@ -16,16 +16,15 @@ For easier installation you should also have [composer](http://getcomposer.org/)
 require 'vendor/autoload.php';
 
 $coderwall = PhpCoderwall\PhpCoderwall::getInstance();
-$user = $coderwall->getUser("mikaelbr");
+$user = $coderwall->getUser("mikaelbr", true);
 
 // E.g. use:
 echo $user->name;
 ?>
 ```
 
-*Notice:* As per now, the Coderwall's User API isn't finalized. You can only notice this by seeing that the 
-team property is a unique ID and not a name. This means that we can't use this, yet, to fetch more information
-about a users team through the API but only by explicitly searching for a team by name.
+*Notice:* The second argument defines if we want to fetch full information about a user. This entails
+more user properties and full information about the team given user is a part of.
 
 #### Properties of the CoderwallUser object
 
@@ -49,7 +48,7 @@ about a users team through the API but only by explicitly searching for a team b
     </tr>
     <tr>
         <td>team</td>
-        <td>See notice above. For now this only returns team ID when user is on a team. In time this might be a CoderwallTeam object.</td>
+        <td>This is a ID to the users team. Can be run through PhpCoderwall#getTeamById() to get full team information.</td>
     </tr>
     <tr>
         <td>accounts</td>
@@ -62,6 +61,32 @@ about a users team through the API but only by explicitly searching for a team b
     <tr>
         <td>badgesCount</td>
         <td>The number of total badges the user has.</td>
+    </tr>
+</table>
+
+#### Additional properties of the full information CoderwallUser object
+
+<table>
+    <tr><th>Property</th><th>Description</th></tr>
+    <tr>
+        <td>title</td>
+        <td>Self set title for user.</td>
+    </tr>
+    <tr>
+        <td>company</td>
+        <td>What company the user works for</td>
+    </tr>
+    <tr>
+        <td>thumbnail</td>
+        <td>URL to the avatar image thumbnail.</td>
+    </tr>
+    <tr>
+        <td>specialities</td>
+        <td>Collection of strings. A set of specialities the user has added.</td>
+    </tr>
+    <tr>
+        <td>accomplishments</td>
+        <td>Collection of strings. A set of accomplishments the user has added</td>
     </tr>
 </table>
 
@@ -165,6 +190,20 @@ both times. We'll just have to wait until Coderwall releases the Team API to the
     </tr>
 </table>
 
+### Fetching team information by team ID
+```php
+<?php
+require 'vendor/autoload.php';
+
+$coderwall = PhpCoderwall\PhpCoderwall::getInstance();
+$team = $coderwall->getTeamById("4f27193d973bf0000400029d");
+
+// E.g. use:
+echo $team->name; // Github
+?>
+```
+
+Returns a CoderwallTeam object as seen above.
 
 ## Installation
 
