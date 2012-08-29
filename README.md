@@ -152,6 +152,10 @@ both times. We'll just have to wait until Coderwall releases the Team API to the
         <td>URL to the image avatar.</td>
     </tr>
     <tr>
+        <td>country</td>
+        <td>Collection of strings. With each index a country of the given team.</td>
+    </tr>
+    <tr>
         <td>neighbors</td>
         <td>Overview of the team neighbors. Collection of simplified CoderwallTeam objects with all properties set, except the following: neighbors and teamMembers</td>
     </tr>

@@ -11,6 +11,7 @@ class CoderwallTeam extends CoderwallEntity {
     public $size;
     public $slug;
     public $avatar;
+    public $country;
     public $neighbors = array();
     public $teamMembers = array();
 
@@ -29,6 +30,7 @@ class CoderwallTeam extends CoderwallEntity {
         $team->size   = $obj->size;
         $team->slug   = $obj->slug;
         $team->avatar = $obj->avatar;
+        $team->country = $obj->country;
 
         if (isset($obj->team_members))
         {
